@@ -1,7 +1,9 @@
+export const dynamic = "force-dynamic";
+
 import { connectionDB } from '@/lib/db'
 import { NextResponse } from 'next/server';
 
-import Review from '@/lib/models/Review';
+const Review = (await import('@/lib/models/Review')).default;
 
 import mongoose from 'mongoose';
 

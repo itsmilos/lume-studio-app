@@ -2,6 +2,8 @@ import { connectionDB } from "@/lib/db";
 import Service from "@/lib/models/Service";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function DELETE(
     request: Request,
     { params }: { params: { id: string } }

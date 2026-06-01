@@ -1,6 +1,9 @@
+export const dynamic = "force-dynamic";
+
 import { connectionDB } from '@/lib/db'
 import { NextResponse } from 'next/server';
-import Service from '@/lib/models/Service'
+import mongoose from 'mongoose';
+const Service = mongoose.models.Service || mongoose.model('Service');
 
 export async function GET() {
     await connectionDB();

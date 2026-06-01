@@ -1,14 +1,13 @@
 import { connectionDB } from '@/lib/db'
 import { NextRequest, NextResponse } from 'next/server';
-import Booking from '@/lib/models/Booking'
-import Service from '@/lib/models/Service';
 
-import mongoose from 'mongoose';
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
     await connectionDB();
 
-    const searchParams = req.nextUrl.searchParams;
+    const Booking = (await import('@/lib/models/Booking')).default;
+
     const data = await Booking.find().populate('service');
 
     return NextResponse.json(data);
@@ -17,13 +16,15 @@ export async function GET(req: NextRequest) {
 export async function POST(request: Request) {
     try {
         const data = await request.json();
-        console.log(data);
 
         if (!data.firstName || !data.lastName || !data.phone || !data.service || !data.start) {
-            return NextResponse.json({ message: 'Missing fields' }, { status: 400 })
+            return NextResponse.json({ message: 'Missing fields' }, { status: 400 });
         }
 
         await connectionDB();
+
+        const Service = (await import('@/lib/models/Service')).default;
+        const Booking = (await import('@/lib/models/Booking')).default;
 
         const service = await Service.findById(data.service);
 
@@ -34,8 +35,6 @@ export async function POST(request: Request) {
         const start = new Date(data.start);
         const end = new Date(start);
         end.setMinutes(end.getMinutes() + service.duration);
-
-        console.log("BODY RECEIVED:", data);
 
         const conflict = await Booking.findOne({
             $or: [
@@ -53,16 +52,12 @@ export async function POST(request: Request) {
             );
         }
 
-        console.log("START:", start);
-        console.log("END:", end);
-        console.log("DURATION:", service.duration);
-
         const booking = await Booking.create({
             ...data,
             service: service._id,
             start,
             end
-        })
+        });
 
         return NextResponse.json(booking, { status: 201 });
 
