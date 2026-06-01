@@ -22,7 +22,7 @@ export default function ServiceStep({ onNext, formData }: Props) {
 
     useEffect(() => {
         async function fetchServices() {
-            const res = await fetch("http://localhost:3000/api/services");
+            const res = await fetch("/api/services");
             const data = await res.json();
             setServices(data);
         }

@@ -19,7 +19,7 @@ export default function Testimonials() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch("http://localhost:3000/api/reviews")
+            const res = await fetch("/api/reviews")
             const data = await res.json()
             setTestimonials(data)
         }

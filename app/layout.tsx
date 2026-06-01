@@ -13,6 +13,13 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
+export const metadata = {
+  title: 'Lumé Beauty Studio',
+  icons: {
+    icon: '/icon.svg'
+  }
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{

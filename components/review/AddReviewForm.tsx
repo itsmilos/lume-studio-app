@@ -28,7 +28,7 @@ export default function AddReviewForm() {
             setError("Please fill in all required fields.");
             return;
         }
-        await fetch("http://localhost:3000/api/reviews", {
+        await fetch("/api/reviews", {
             method: 'POST',
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(form)
@@ -39,7 +39,7 @@ export default function AddReviewForm() {
 
     useEffect(() => {
         async function servicesFetch() {
-            const res = await fetch("http://localhost:3000/api/services");
+            const res = await fetch("/api/services");
             const data = await res.json();
             setServices(data);
             setForm(prev => ({ ...prev, service: data[0]._id }))

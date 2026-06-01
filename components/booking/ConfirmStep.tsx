@@ -18,7 +18,7 @@ export default function ConfirmStep({ onBack, formData }: Props) {
 
     async function confirmBooking() {
         try {
-            await fetch("http://localhost:3000/api/bookings", {
+            await fetch("/api/bookings", {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
