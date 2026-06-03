@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import ServicesListClient from "./Client/ServicesListClient";
 import { connectionDB } from "@/lib/db";
 

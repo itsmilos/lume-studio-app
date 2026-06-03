@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import BookingsListClient from "./Client/BookingListClient";
 import { connectionDB } from "@/lib/db";
 
