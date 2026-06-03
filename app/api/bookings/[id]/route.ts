@@ -18,7 +18,9 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     return NextResponse.json(booking);
 }
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+
     await connectionDB();
     const Booking = (await import("@/lib/models/Booking")).default;
 
@@ -29,7 +31,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     }
 
     const updated = await Booking.findByIdAndUpdate(
-        params.id,
+        id,
         { status },
         { new: true }
     );
