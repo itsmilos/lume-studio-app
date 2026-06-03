@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import AdminTabs from "@/components/admin/Client/AdminTabs";
 import BookingsList from "@/components/admin/BookingsList";
 import ServicesList from "@/components/admin/ServicesList";
