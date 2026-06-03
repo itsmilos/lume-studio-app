@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import About from "@/components/home/About";
 
 import Gallery from "@/components/home/Gallery";
