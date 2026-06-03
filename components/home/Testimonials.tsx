@@ -29,8 +29,6 @@ export default function Testimonials() {
 
     return (
         <div className="py-20 px-6 md:px-10 max-w-6xl mx-auto">
-
-            {/* HEADER */}
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +38,6 @@ export default function Testimonials() {
             >
                 CLIENT EXPERIENCES
             </motion.h2>
-
             <motion.h1
                 initial={{ opacity: 0, y: 30, letterSpacing: "0.2em" }}
                 whileInView={{ opacity: 1, y: 0, letterSpacing: "0.1em" }}
@@ -50,13 +47,8 @@ export default function Testimonials() {
             >
                 Trusted by Women<br />Who Value Elegance
             </motion.h1>
-
-            {/* CONTENT */}
             <div className="flex flex-col md:flex-row gap-12 md:gap-16">
-
-                {/* LEFT LIST */}
                 <div className="flex flex-col gap-4 md:w-1/3 order-2 md:order-1">
-
                     {testimonials.map((t, index) => (
                         <motion.div
                             key={t._id}
@@ -85,11 +77,8 @@ export default function Testimonials() {
                             </div>
                         </motion.div>
                     ))}
-
                     <ReviewModal onClose={() => setRefreshKey(prev => prev + 1)} />
                 </div>
-
-                {/* RIGHT QUOTE */}
                 <div className="md:w-2/3 flex flex-col justify-center order-1 md:order-2">
 
                     <AnimatePresence mode="wait">
@@ -106,7 +95,6 @@ export default function Testimonials() {
                             </motion.p>
                         )}
                     </AnimatePresence>
-
                 </div>
             </div>
         </div>

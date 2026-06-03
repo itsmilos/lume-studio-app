@@ -35,8 +35,6 @@ export default function AboutPage() {
 
     return (
         <div className="max-w-6xl mx-auto px-10 py-20">
-
-            {/* Hero */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -50,8 +48,6 @@ export default function AboutPage() {
                     Lumé was founded with a simple belief — every woman deserves to feel beautiful in her own skin. Based in the heart of Chelsea, we combine expert techniques with premium products to deliver results that speak for themselves.
                 </p>
             </motion.div>
-
-            {/* Team */}
             <div className="mb-20">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
@@ -80,8 +76,6 @@ export default function AboutPage() {
                     ))}
                 </motion.div>
             </div>
-
-            {/* Info + CTA */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}

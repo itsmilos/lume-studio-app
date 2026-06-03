@@ -28,8 +28,6 @@ const item = {
 export default function Gallery() {
     return (
         <div className="py-20 px-6 md:px-10 max-w-6xl mx-auto">
-
-            {/* HEADER */}
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +36,6 @@ export default function Gallery() {
             >
                 OUR WORK
             </motion.h2>
-
             <motion.h1
                 initial={{ opacity: 0, y: 30, letterSpacing: "0.2em" }}
                 whileInView={{ opacity: 1, y: 0, letterSpacing: "0.1em" }}
@@ -48,8 +45,6 @@ export default function Gallery() {
             >
                 Gallery
             </motion.h1>
-
-            {/* GRID */}
             <motion.div
                 variants={container}
                 initial="hidden"
@@ -69,11 +64,7 @@ export default function Gallery() {
                             fill
                             className="object-cover group-hover:scale-105 transition duration-700"
                         />
-
-                        {/* overlay */}
                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition duration-500" />
-
-                        {/* text */}
                         <p className="absolute bottom-4 left-4 text-white text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition duration-300">
                             {itemData.title}
                         </p>

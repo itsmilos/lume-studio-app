@@ -6,8 +6,6 @@ import { motion } from "framer-motion"
 export default function Hero() {
     return (
         <section className="relative w-full h-[80vh] flex flex-col items-center justify-end pb-20 overflow-hidden">
-
-            {/* IMAGE */}
             <motion.img
                 src="/1.jpg"
                 alt="Beauty salon"
@@ -16,13 +14,8 @@ export default function Hero() {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 className="absolute inset-0 w-full h-full object-cover"
             />
-
-            {/* OVERLAY */}
             <div className="absolute inset-0 bg-black/40" />
-
-            {/* CONTENT */}
             <div className="relative z-10 flex flex-col items-center px-4 text-center">
-
                 <motion.h1
                     initial={{ opacity: 0, y: 30, letterSpacing: "0.2em" }}
                     animate={{ opacity: 1, y: 0, letterSpacing: "0.1em" }}
@@ -31,7 +24,6 @@ export default function Hero() {
                 >
                     ELEVATE YOUR NATURAL BEAUTY
                 </motion.h1>
-
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -40,10 +32,7 @@ export default function Hero() {
                 >
                     Premium beauty treatments and personalized care designed to help you look and feel your best.
                 </motion.p>
-
             </div>
-
-            {/* SCROLL ICON */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

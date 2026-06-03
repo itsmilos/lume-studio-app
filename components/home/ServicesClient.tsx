@@ -24,8 +24,6 @@ const item = {
 export default function ServicesClient({ data }: any) {
     return (
         <div className="my-10">
-
-            {/* HEADER */}
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +33,6 @@ export default function ServicesClient({ data }: any) {
             >
                 OUR SERVICES
             </motion.h2>
-
             <motion.h1
                 initial={{ opacity: 0, y: 30, letterSpacing: "0.2em" }}
                 whileInView={{ opacity: 1, y: 0, letterSpacing: "0.1em" }}
@@ -45,8 +42,6 @@ export default function ServicesClient({ data }: any) {
             >
                 Crafted Beauty Experiences
             </motion.h1>
-
-            {/* GRID */}
             <motion.section
                 variants={container}
                 initial="hidden"
@@ -66,11 +61,7 @@ export default function ServicesClient({ data }: any) {
                             fill
                             className="object-cover group-hover:scale-105 transition duration-700"
                         />
-
-                        {/* overlay */}
                         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition duration-500" />
-
-                        {/* text */}
                         <motion.div
                             className="absolute bottom-0 left-0 p-8 text-white"
                             initial={{ y: 10, opacity: 0.8 }}

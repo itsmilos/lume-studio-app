@@ -6,7 +6,7 @@ import DashboardStats from "@/components/admin/Client/DashboardStats";
 import ServiceModal from "@/components/admin/ServiceModal";
 
 export default async function DashboardPage() {
-    const res = await fetch("http://localhost:3000/api/bookings", { cache: 'no-store' });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/bookings`, { cache: 'no-store' });
     const data = await res.json();
 
     const total = data.length
