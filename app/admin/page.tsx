@@ -10,7 +10,7 @@ export default async function DashboardPage() {
         ? `https://${process.env.VERCEL_URL}`
         : 'http://localhost:3000'
 
-    const res = await fetch(`${baseUrl}/api/services`, { cache: 'no-store' })
+    const res = await fetch(`${baseUrl}/api/bookings`, { cache: 'no-store' })
     const data = await res.json();
 
     const total = data.length
