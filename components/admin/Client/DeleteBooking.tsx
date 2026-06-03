@@ -11,7 +11,7 @@ export default function DeleteBookingButton({ id }: Props) {
 
     async function handleDelete(id: string) {
         try {
-            await fetch(`http://localhost:3000/api/bookings/${id}`, {
+            await fetch(`/api/bookings/${id}`, {
                 method: 'DELETE',
                 headers: { "Content-Type": "application/json" }
             })

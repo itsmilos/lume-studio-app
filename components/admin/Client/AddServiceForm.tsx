@@ -20,7 +20,7 @@ export default function AddServiceForm() {
             setError('Please fill in all required fields.');
             return;
         }
-        await fetch("http://localhost:3000/api/services", {
+        await fetch("/api/services", {
             method: 'POST',
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(form)

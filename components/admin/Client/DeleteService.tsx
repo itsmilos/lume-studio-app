@@ -11,7 +11,7 @@ export default function DeleteServiceButton({ id }: Props) {
 
     async function handleDelete(id: string) {
         try {
-            await fetch(`http://localhost:3000/api/services/${id}`, {
+            await fetch(`/api/services/${id}`, {
                 method: 'DELETE',
                 headers: { "Content-Type": "application/json" }
             })

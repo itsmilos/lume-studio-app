@@ -19,7 +19,7 @@ export default function StatusButton({ id, currentStatus, booking }: Props) {
 
     async function updateStatus(id: string, nextStatus: string) {
         try {
-            await fetch(`http://localhost:3000/api/bookings/${id}`, {
+            await fetch(`/api/bookings/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: nextStatus })
