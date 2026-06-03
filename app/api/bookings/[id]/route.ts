@@ -1,32 +1,40 @@
+import { connectionDB } from "@/lib/db";
+import { NextResponse } from "next/server";
+
 export const dynamic = "force-dynamic";
 
-import { connectionDB } from '@/lib/db'
-import { NextResponse } from 'next/server';
-import mongoose from 'mongoose';
-
-export async function GET() {
+export async function GET(req: Request, { params }: { params: { id: string } }) {
     await connectionDB();
-    const Review = (await import('@/lib/models/Review')).default;
-    const data = await Review.find().populate('service');
-    return NextResponse.json(data);
+    const Booking = (await import("@/lib/models/Booking")).default;
+
+    const booking = await Booking.findById(params.id).populate("service");
+
+    if (!booking) {
+        return NextResponse.json({ message: "Not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(booking);
 }
 
-export async function POST(request: Request) {
-    try {
-        const data = await request.json();
+export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+    await connectionDB();
+    const Booking = (await import("@/lib/models/Booking")).default;
 
-        if (!data.firstName || !data.lastName || !data.email || !data.text || !data.service) {
-            return NextResponse.json({ message: 'Missing fields' }, { status: 400 })
-        }
+    const { status } = await req.json();
 
-        await connectionDB();
-        const Review = (await import('@/lib/models/Review')).default;
-        await Review.create({
-            ...data,
-            service: new mongoose.Types.ObjectId(data.service)
-        })
-        return NextResponse.json({ message: 'Success!', received: data }, { status: 201 });
-    } catch (error) {
-        return NextResponse.json({ message: 'Error' }, { status: 500 });
+    if (!status) {
+        return NextResponse.json({ message: "Missing status" }, { status: 400 });
     }
+
+    const updated = await Booking.findByIdAndUpdate(
+        params.id,
+        { status },
+        { new: true }
+    );
+
+    if (!updated) {
+        return NextResponse.json({ message: "Not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(updated);
 }
