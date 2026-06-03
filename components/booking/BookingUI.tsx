@@ -46,12 +46,13 @@ export default function BookingUI({ serviceId, onSelect, selected, onDateChange,
                 <div className="grid grid-cols-4 gap-1 h-48 overflow-y-auto content-start">
                     {slots.map((slot, i) => (
                         <button
+                            type="button"
                             disabled={!slot.available}
                             key={i}
                             onClick={() => onSelect(slot)}
                             className={slotClass(slot)}
                         >
-                            {new Date(slot.start).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                            {slot.start.slice(11, 16)}
                         </button>
                     ))}
                 </div>

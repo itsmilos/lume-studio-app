@@ -29,10 +29,10 @@ export async function GET(req: NextRequest) {
     const day = new Date(date);
 
     const dayStart = new Date(day);
-    dayStart.setHours(9, 0, 0, 0);
+    dayStart.setUTCHours(9, 0, 0, 0);
 
     const dayEnd = new Date(day);
-    dayEnd.setHours(17, 0, 0, 0);
+    dayEnd.setUTCHours(17, 0, 0, 0);
 
     const bookings = await Booking.find({
         start: { $gte: dayStart, $lte: dayEnd }
