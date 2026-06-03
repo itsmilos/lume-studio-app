@@ -18,7 +18,7 @@ const item = {
 const cardClass = "border border-gray-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4"
 const textClass = "text-sm text-gray-400 mt-1"
 
-export default async function BookingsList() {
+export default function BookingsList() {
     const [data, setData] = useState([])
 
     async function fetchBookings() {
@@ -34,7 +34,11 @@ export default async function BookingsList() {
 
     return (
         <>
-            if (data.length === 0) return <p className="text-gray-400 tracking-widest text-sm uppercase">No bookings to preview.</p>
+            {data.length === 0 && (
+                <p className="text-gray-400 tracking-widest text-sm uppercase">
+                    No bookings to preview.
+                </p>
+            )}
             <motion.div
                 variants={container}
                 initial="hidden"
