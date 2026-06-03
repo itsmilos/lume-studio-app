@@ -28,7 +28,7 @@ export default async function DashboardPage() {
                 </div>
             </div>
             <DashboardStats total={total} today={today} pending={pending} confirmed={confirmed} />
-            <AdminTabs bookings={<BookingsList />} services={<ServicesList />} />
+            <AdminTabs key={Date.now()} bookings={<BookingsList />} services={<ServicesList />} />
         </div>
     )
 }
