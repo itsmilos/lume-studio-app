@@ -3,11 +3,13 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+
     await connectionDB();
     const Booking = (await import("@/lib/models/Booking")).default;
 
-    const booking = await Booking.findById(params.id).populate("service");
+    const booking = await Booking.findById(id).populate("service");
 
     if (!booking) {
         return NextResponse.json({ message: "Not found" }, { status: 404 });
