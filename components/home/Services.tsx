@@ -1,14 +1,13 @@
 import ServicesClient from "./ServicesClient"
+import { connectionDB } from "@/lib/db"
 
 export const dynamic = 'force-dynamic'
 
 export default async function Services() {
-    const baseUrl = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : 'http://localhost:3000'
+    await connectionDB()
+    const Service = (await import('@/lib/models/Service')).default
+    const data = await Service.find().lean()
+    const serialized = JSON.parse(JSON.stringify(data))
 
-    const res = await fetch(`${baseUrl}/api/services`, { cache: 'no-store' })
-    const data = await res.json()
-
-    return <ServicesClient data={data} />
+    return <ServicesClient data={serialized} />
 }

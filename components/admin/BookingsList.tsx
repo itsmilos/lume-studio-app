@@ -1,12 +1,12 @@
 import BookingsListClient from "./Client/BookingListClient";
+import { connectionDB } from "@/lib/db";
 
 export default async function BookingsList() {
-    const baseUrl = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : 'http://localhost:3000'
+    await connectionDB();
+    const Booking = (await import('@/lib/models/Booking')).default;
+    const Service = (await import('@/lib/models/Service')).default;
+    const data = await Booking.find().populate('service').lean();
+    const serialized = JSON.parse(JSON.stringify(data));
 
-    const res = await fetch(`${baseUrl}/api/services`, { cache: 'no-store' })
-    const data = await res.json();
-
-    return <BookingsListClient data={data} />
+    return <BookingsListClient data={serialized} />
 }
