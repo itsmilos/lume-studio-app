@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
 
 const container = {
     hidden: {},
@@ -20,12 +21,26 @@ interface Props {
 }
 
 export default function DashboardStats({ total, today, pending, confirmed }: Props) {
-    const stats = [
+    const [stats, setStats] = useState([
         { label: "Total Bookings", value: total },
         { label: "Today", value: today },
         { label: "Pending", value: pending },
         { label: "Confirmed", value: confirmed },
-    ]
+    ])
+
+    useEffect(() => {
+        fetch("/api/bookings")
+            .then(res => res.json())
+            .then(data => {
+                const today = new Date()
+                setStats([
+                    { label: "Total Bookings", value: data.length },
+                    { label: "Today", value: data.filter((b: any) => new Date(b.start).toDateString() === today.toDateString()).length },
+                    { label: "Pending", value: data.filter((b: any) => b.status === "pending").length },
+                    { label: "Confirmed", value: data.filter((b: any) => b.status === "confirmed").length },
+                ])
+            })
+    })
 
     return (
         <motion.div
