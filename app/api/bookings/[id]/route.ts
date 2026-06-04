@@ -1,5 +1,6 @@
 import { connectionDB } from "@/lib/db";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export const dynamic = "force-dynamic";
 
@@ -35,6 +36,8 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
         { status },
         { new: true }
     );
+
+    revalidatePath("/admin");
 
     if (!updated) {
         return NextResponse.json({ message: "Not found" }, { status: 404 });

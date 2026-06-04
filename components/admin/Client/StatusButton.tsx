@@ -7,9 +7,11 @@ interface Props {
 }
 
 import { useRouter } from "next/navigation"
+import { useState, useTransition } from "react";
 
 export default function StatusButton({ id, currentStatus, booking }: Props) {
     const router = useRouter();
+    const [isPending, startTransition] = useTransition();
 
     function getNextStatus(current: string) {
         if (current === "pending") return "confirmed"
@@ -24,7 +26,11 @@ export default function StatusButton({ id, currentStatus, booking }: Props) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: nextStatus })
             })
-            router.refresh();
+
+            startTransition(() => {
+                router.refresh();
+            });
+
         } catch (error) {
             console.error(error);
         }
@@ -41,7 +47,7 @@ export default function StatusButton({ id, currentStatus, booking }: Props) {
             className={`active:scale-95 transition text-xs tracking-widest uppercase px-3 py-1 border ${statusClass}`}
             onClick={() => updateStatus(id, getNextStatus(currentStatus))}
         >
-            {currentStatus}
+            {isPending ? "Updating" : currentStatus}
         </button>
     )
 }
