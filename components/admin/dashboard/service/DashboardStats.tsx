@@ -14,18 +14,16 @@ const item = {
 }
 
 interface Props {
-    total: number
-    today: number
-    pending: number
-    confirmed: number
+    refreshKey: number
+
 }
 
-export default function DashboardStats({ total, today, pending, confirmed }: Props) {
+export default function DashboardStats({ refreshKey }: Props) {
     const [stats, setStats] = useState([
-        { label: "Total Bookings", value: total },
-        { label: "Today", value: today },
-        { label: "Pending", value: pending },
-        { label: "Confirmed", value: confirmed },
+        { label: "Total Bookings", value: 0 },
+        { label: "Today", value: 0 },
+        { label: "Pending", value: 0 },
+        { label: "Confirmed", value: 0 },
     ])
 
     useEffect(() => {
@@ -40,7 +38,7 @@ export default function DashboardStats({ total, today, pending, confirmed }: Pro
                     { label: "Confirmed", value: data.filter((b: any) => b.status === "confirmed").length },
                 ])
             })
-    })
+    }, [refreshKey])
 
     return (
         <motion.div

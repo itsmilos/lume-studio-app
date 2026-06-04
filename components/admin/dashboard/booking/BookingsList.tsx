@@ -1,5 +1,9 @@
 "use client"
 
+interface Props {
+    onRefresh: () => void
+}
+
 import { motion } from "framer-motion"
 import StatusButton from "./StatusButton"
 import DeleteBookingButton from "./DeleteBooking"
@@ -18,13 +22,14 @@ const item = {
 const cardClass = "border border-gray-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4"
 const textClass = "text-sm text-gray-400 mt-1"
 
-export default function BookingsList() {
+export default function BookingsList({ onRefresh }: Props) {
     const [data, setData] = useState([])
 
     async function fetchBookings() {
         const res = await fetch("/api/bookings")
         const json = await res.json()
         setData(json)
+        onRefresh()
     }
 
     useEffect(() => {
