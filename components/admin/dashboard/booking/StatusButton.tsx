@@ -3,12 +3,13 @@
 interface Props {
     id: string
     currentStatus: string
+    onUpdate: any
 }
 
 import { useRouter } from "next/navigation"
 import { useState } from "react";
 
-export default function StatusButton({ id, currentStatus }: Props) {
+export default function StatusButton({ id, currentStatus, onUpdate }: Props) {
     const router = useRouter();
     const [status, setStatus] = useState(currentStatus);
     const [loading, setLoading] = useState(false);
@@ -32,7 +33,7 @@ export default function StatusButton({ id, currentStatus }: Props) {
                 body: JSON.stringify({ status: nextStatus })
             });
 
-            router.refresh();
+            onUpdate();
 
         } catch (error) {
             console.error(error);

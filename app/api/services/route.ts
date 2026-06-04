@@ -17,3 +17,4 @@ export async function POST(request: Request) {
     await Service.create(data);
     return NextResponse.json({ message: 'Success!', received: data }, { status: 201 });
 }
+

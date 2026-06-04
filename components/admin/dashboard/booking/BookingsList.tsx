@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import StatusButton from "./Client/StatusButton"
-import DeleteBookingButton from "./Client/DeleteBooking"
+import StatusButton from "../service/StatusButton"
+import DeleteBookingButton from "../service/DeleteBooking"
 import { useState, useEffect } from "react"
 
 const container = {
@@ -54,8 +54,8 @@ export default function BookingsList() {
                             <p className={textClass}>{booking.email} · {booking.phone}</p>
                         </div>
                         <div className="flex items-center gap-2 flex-wrap">
-                            <StatusButton id={booking._id} currentStatus={booking.status} />
-                            <DeleteBookingButton id={booking._id} />
+                            <StatusButton id={booking._id} currentStatus={booking.status} onUpdate={fetchBookings} />
+                            <DeleteBookingButton onDelete={fetchBookings} id={booking._id} />
                         </div>
                     </motion.div>
                 ))}

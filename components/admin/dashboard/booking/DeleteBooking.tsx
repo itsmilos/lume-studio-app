@@ -3,10 +3,11 @@
 import { useRouter } from "next/navigation"
 
 interface Props {
-    id: string
+    id: string,
+    onDelete: any
 }
 
-export default function DeleteBookingButton({ id }: Props) {
+export default function DeleteBookingButton({ id, onDelete }: Props) {
     const router = useRouter();
 
     async function handleDelete(id: string) {
@@ -15,7 +16,9 @@ export default function DeleteBookingButton({ id }: Props) {
                 method: 'DELETE',
                 headers: { "Content-Type": "application/json" }
             })
-            router.refresh();
+
+            onDelete();
+
         } catch (error) {
             console.error(error);
         }

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import AddServiceForm from "./Client/AddServiceForm";
+import AddServiceForm from "./dashboard/service/AddServiceForm";
 import { X } from "lucide-react";
 
 export default function ServiceModal() {

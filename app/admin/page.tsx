@@ -1,11 +1,11 @@
 export const dynamic = "force-dynamic"
 
-import AdminTabs from "@/components/admin/Client/AdminTabs";
-import BookingsList from "@/components/admin/BookingsList";
-import ServicesList from "@/components/admin/ServicesList";
-import LogoutButton from "@/components/admin/Client/Logout";
-import DashboardStats from "@/components/admin/Client/DashboardStats";
-import ServiceModal from "@/components/admin/ServiceModal";
+import AdminTabs from "@/components/admin/AdminTabs";
+import BookingsList from "@/components/admin/dashboard/booking/BookingsList";
+import ServicesList from "@/components/admin/dashboard/service/ServicesList";
+import LogoutButton from "@/components/admin/Logout";
+import DashboardStats from "@/components/admin/dashboard/service/DashboardStats";
+import ServiceModal from "@/components/admin/dashboard/service/ServiceModal";
 import { connectionDB } from "@/lib/db";
 
 export default async function DashboardPage() {

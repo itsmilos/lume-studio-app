@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion"
-import DeleteServiceButton from "./Client/DeleteService";
+import DeleteServiceButton from "./DeleteService";
 
 const container = {
     hidden: {},
