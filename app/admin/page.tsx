@@ -19,12 +19,11 @@ export default async function DashboardPage() {
     const confirmed = await Booking.countDocuments({
         status: "confirmed"
     })
-    const startOfToday = new Date();
-    startOfToday.setHours(0, 0, 0, 0);
-    const endOfToday = new Date();
-    endOfToday.setHours(23, 59, 59, 999);
     const today = await Booking.countDocuments({
-        start: { $gte: startOfToday, $lte: endOfToday }
+        start: {
+            $gte: new Date(new Date().setUTCHours(0, 0, 0, 0)),
+            $lt: new Date(new Date().setUTCHours(24, 0, 0, 0))
+        }
     });
 
     return (
