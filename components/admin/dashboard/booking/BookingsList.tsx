@@ -24,11 +24,13 @@ const textClass = "text-sm text-gray-400 mt-1"
 
 export default function BookingsList({ onRefresh }: Props) {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true);
 
     async function fetchBookings() {
         const res = await fetch("/api/bookings")
         const json = await res.json()
         setData(json)
+        setLoading(false);
         onRefresh()
     }
 
@@ -36,6 +38,13 @@ export default function BookingsList({ onRefresh }: Props) {
         fetchBookings()
     }, [])
 
+    if (loading) return (
+        <div className="flex flex-col gap-4">
+            {[1, 2, 3].map(i => (
+                <div key={i} className="border border-gray-200 p-6 h-24 animate-pulse bg-gray-50" />
+            ))}
+        </div>
+    )
 
     return (
         <>
