@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import StatusButton from "../service/StatusButton"
-import DeleteBookingButton from "../service/DeleteBooking"
+import StatusButton from "./StatusButton"
+import DeleteBookingButton from "./DeleteBooking"
 import { useState, useEffect } from "react"
 
 const container = {
