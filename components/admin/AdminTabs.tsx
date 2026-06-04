@@ -29,8 +29,12 @@ export default function AdminTabs({ bookings, services }: Props) {
                     Services
                 </button>
             </div>
-            {activeTab === 'bookings' && bookings}
-            {activeTab === 'services' && services}
+            <div className={activeTab === 'bookings' ? 'block' : 'hidden'}>
+                {bookings}
+            </div>
+            <div className={activeTab === 'services' ? 'block' : 'hidden'}>
+                {services}
+            </div>
         </div>
     )
 }
