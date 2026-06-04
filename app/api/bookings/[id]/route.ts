@@ -45,3 +45,12 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
 
     return NextResponse.json(updated);
 }
+
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    await connectionDB();
+    const Booking = (await import("@/lib/models/Booking")).default;
+    await Booking.findByIdAndDelete(id);
+    revalidatePath("/admin");
+    return NextResponse.json({ message: 'Booking deleted!' });
+}
