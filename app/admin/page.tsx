@@ -19,12 +19,16 @@ export default async function DashboardPage() {
     const confirmed = await Booking.countDocuments({
         status: "confirmed"
     })
+    const todayStart = new Date()
+    todayStart.setHours(0, 0, 0, 0)
+    const todayEnd = new Date()
+    todayEnd.setHours(23, 59, 59, 999)
     const today = await Booking.countDocuments({
         start: {
-            $gte: new Date(new Date().setUTCHours(0, 0, 0, 0)),
-            $lt: new Date(new Date().setUTCHours(24, 0, 0, 0))
+            $gte: todayStart,
+            $lt: todayEnd
         }
-    });
+    })
 
     return (
         <div className="max-w-6xl mx-auto px-10 py-20">
