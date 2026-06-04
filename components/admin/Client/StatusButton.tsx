@@ -3,16 +3,15 @@
 interface Props {
     id: string
     currentStatus: string
-    booking: any
 }
 
 import { useRouter } from "next/navigation"
-import { useState, useTransition } from "react";
+import { useState } from "react";
 
-export default function StatusButton({ id, currentStatus, booking }: Props) {
+export default function StatusButton({ id, currentStatus }: Props) {
     const router = useRouter();
-    const [isPending, startTransition] = useTransition();
     const [status, setStatus] = useState(currentStatus);
+    const [loading, setLoading] = useState(false);
 
     function getNextStatus(current: string) {
         if (current === "pending") return "confirmed"
@@ -24,22 +23,22 @@ export default function StatusButton({ id, currentStatus, booking }: Props) {
         const nextStatus = getNextStatus(status);
 
         setStatus(nextStatus);
+        setLoading(true);
 
         try {
             await fetch(`/api/bookings/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: nextStatus })
-            })
-
-            startTransition(() => {
-                router.refresh();
             });
+
+            router.refresh();
 
         } catch (error) {
             console.error(error);
-
             setStatus(currentStatus);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -51,11 +50,11 @@ export default function StatusButton({ id, currentStatus, booking }: Props) {
 
     return (
         <button
-            className={`active:scale-95 transition text-xs tracking-widest uppercase px-3 py-1 border ${statusClass}`}
+            className={`active:scale-95 transition text-xs uppercase px-3 py-1 border ${statusClass} ${loading ? "opacity-60" : ""}`}
             onClick={updateStatus}
-            disabled={isPending}
+            disabled={loading}
         >
-            {isPending ? "Updating" : status}
+            {status}
         </button>
     )
 }

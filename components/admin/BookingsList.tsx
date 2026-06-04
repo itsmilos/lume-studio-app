@@ -54,7 +54,7 @@ export default function BookingsList() {
                             <p className={textClass}>{booking.email} · {booking.phone}</p>
                         </div>
                         <div className="flex items-center gap-2 flex-wrap">
-                            <StatusButton booking={booking} id={booking._id} currentStatus={booking.status} />
+                            <StatusButton id={booking._id} currentStatus={booking.status} />
                             <DeleteBookingButton id={booking._id} />
                         </div>
                     </motion.div>
