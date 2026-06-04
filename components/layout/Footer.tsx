@@ -22,9 +22,8 @@ export default function Footer() {
                         <div className="flex flex-col gap-3">
                             <p className="text-xs tracking-widest text-gray-500 uppercase mb-2">Navigation</p>
                             <Link href="/" className="text-gray-300 hover:text-white transition">Home</Link>
-                            <Link href="/services" className="text-gray-300 hover:text-white transition">Services</Link>
+                            <Link href="#services" className="text-gray-300 hover:text-white transition">Services</Link>
                             <Link href="/about" className="text-gray-300 hover:text-white transition">About</Link>
-                            <Link href="/booking" className="text-gray-300 hover:text-white transition">Booking</Link>
                         </div>
                         <div className="flex flex-col gap-3">
                             <p className="text-xs tracking-widest text-gray-500 uppercase mb-2">Contact</p>
