@@ -12,13 +12,20 @@ export default async function DashboardPage() {
     await connectionDB();
     const Booking = (await import('@/lib/models/Booking')).default;
     const Service = (await import('@/lib/models/Service')).default;
-    const data = await Booking.find().populate('service').lean();
-    const serialized = JSON.parse(JSON.stringify(data));
-
-    const total = serialized.length
-    const pending = serialized.filter((b: any) => b.status === 'pending').length
-    const confirmed = serialized.filter((b: any) => b.status === 'confirmed').length
-    const today = serialized.filter((b: any) => new Date(b.start).toDateString() === new Date().toDateString()).length
+    const total = await Booking.countDocuments()
+    const pending = await Booking.countDocuments({
+        status: "pending"
+    })
+    const confirmed = await Booking.countDocuments({
+        status: "confirmed"
+    })
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    const endOfToday = new Date();
+    endOfToday.setHours(23, 59, 59, 999);
+    const today = await Booking.countDocuments({
+        start: { $gte: startOfToday, $lte: endOfToday }
+    });
 
     return (
         <div className="max-w-6xl mx-auto px-10 py-20">
@@ -30,7 +37,7 @@ export default async function DashboardPage() {
                 </div>
             </div>
             <DashboardStats total={total} today={today} pending={pending} confirmed={confirmed} />
-            <AdminTabs key={Date.now()} bookings={<BookingsList />} services={<ServicesList />} />
+            <AdminTabs key="dashboard-tabs" bookings={<BookingsList />} services={<ServicesList />} />
         </div>
     )
 }
