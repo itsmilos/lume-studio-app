@@ -12,6 +12,7 @@ import { useState, useTransition } from "react";
 export default function StatusButton({ id, currentStatus, booking }: Props) {
     const router = useRouter();
     const [isPending, startTransition] = useTransition();
+    const [status, setStatus] = useState(currentStatus);
 
     function getNextStatus(current: string) {
         if (current === "pending") return "confirmed"
@@ -19,7 +20,11 @@ export default function StatusButton({ id, currentStatus, booking }: Props) {
         return "pending"
     }
 
-    async function updateStatus(id: string, nextStatus: string) {
+    async function updateStatus() {
+        const nextStatus = getNextStatus(status);
+
+        setStatus(nextStatus);
+
         try {
             await fetch(`/api/bookings/${id}`, {
                 method: 'PATCH',
@@ -33,21 +38,24 @@ export default function StatusButton({ id, currentStatus, booking }: Props) {
 
         } catch (error) {
             console.error(error);
+
+            setStatus(currentStatus);
         }
     }
 
-    const statusClass = booking.status === 'confirmed'
+    const statusClass = status === 'confirmed'
         ? 'border-green-400 text-green-600'
-        : booking.status === 'cancelled'
+        : status === 'cancelled'
             ? 'border-red-400 text-red-500'
             : 'border-gray-300 text-gray-500'
 
     return (
         <button
             className={`active:scale-95 transition text-xs tracking-widest uppercase px-3 py-1 border ${statusClass}`}
-            onClick={() => updateStatus(id, getNextStatus(currentStatus))}
+            onClick={updateStatus}
+            disabled={isPending}
         >
-            {isPending ? "Updating" : currentStatus}
+            {isPending ? "Updating" : status}
         </button>
     )
 }
