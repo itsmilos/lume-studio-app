@@ -2,11 +2,6 @@ Lumé Studio
 
 A full-stack beauty salon booking application built as a portfolio project. Clients can book appointments through a multi-step form, while admins have a dedicated dashboard to manage bookings.
 
-Show Image
-Show Image
-Show Image
-Show Image
-
 🌐 Live Demo
 
 [lume-studio.vercel.app <!-- replace with actual link -->](https://lume-studio-ashen.vercel.app/)
