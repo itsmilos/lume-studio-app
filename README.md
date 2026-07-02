@@ -1,79 +1,55 @@
-Lumé Studio
+💅 Lumé Studio
 
-A full-stack beauty salon booking application built as a portfolio project. Clients can book appointments through a multi-step form, while admins have a dedicated dashboard to manage bookings.
+A full-stack beauty salon booking app. Clients book appointments through a slick multi-step form, admins manage everything from a dashboard — no double-bookings, no chaos.
 
-🌐 Live Demo
-
-[lume-studio.vercel.app <!-- replace with actual link -->](https://lume-studio-ashen.vercel.app/)
-
-✨ Features
+📦 Stack
 
 
-Multi-step booking form – book appointments through several steps, with form state persisted between steps
-Conflict detection – prevents double-booking by checking for overlapping appointment times
-Admin dashboard – view and manage all bookings, with the ability to cycle through booking statuses
-Authentication – login and protected admin routes powered by NextAuth
-Animations – smooth stagger animations on content load (Framer Motion)
-Responsive design – adapted for all screen sizes
+Next.js
+MongoDB + Mongoose
+NextAuth.js
+Tailwind CSS
+Framer Motion
 
 
-🛠️ Tech Stack
-
-
-Frontend: Next.js, React, Tailwind CSS, Framer Motion
-Backend: Next.js API routes
-Database: MongoDB (Mongoose ODM), hosted on MongoDB Atlas
-Authentication: NextAuth.js
-Deployment: Vercel
-
-
-🎨 Design
-
-The visual identity follows an elegant black/white/gold (#DE9E36) color palette, paired with the Playfair Display font for a luxurious, salon-like feel.
-
-🚀 Running Locally
-
-
-Clone the repository
-
-
-bashgit clone https://github.com/your-username/lume-studio.git
-cd lume-studio
-
-
-Install dependencies
-
+✨ Quick start
 
 bashnpm install
+npm run dev
+
+You'll need a .env.local with your MongoDB URI and NextAuth secret before anything works.
+
+📅 Booking flow
 
 
-Create a .env.local file and add the required environment variables
+Pick a service — browse and select from available treatments
+Multi-step form — fills out details across steps, keeps state the whole way through
+Conflict check — the backend won't let two people grab the same slot
+Confirmation — booking locked in, no double-booking drama
 
 
-envMONGODB_URI=
-NEXTAUTH_SECRET=
-NEXTAUTH_URL=http://localhost:3000
+🎨 Look & feel
 
+Black, white, and gold (#DE9E36), with Playfair Display setting the tone. Elegant over flashy — the kind of salon that makes you sit up straighter just looking at the site.
 
-Run the development server
+🤖 How it works
 
+Bookings are validated server-side before they're written to MongoDB — the API checks existing appointments for the requested time slot and rejects overlaps before they happen. The admin dashboard cycles booking status (pending → confirmed → done) with a single click, backed by Mongoose queries. Framer Motion handles the stagger animations on page load, giving lists and cards a smooth cascading entrance instead of popping in all at once.
 
-bashnpm run dev
+📁 Project structure
 
-The app will be available at http://localhost:3000
+src/
+  app/
+    admin/              # Admin dashboard, protected routes
+    api/                # Booking + auth route handlers
+    booking/            # Multi-step booking flow
+  components/
+    booking/            # Form steps, progress indicator
+    ui/                 # Shared UI pieces
+  lib/
+    mongodb.ts          # DB connection
+    auth.ts             # NextAuth config
 
+👤 Author
 
-📚 What I Learned
-
-This was my first serious full-stack project, and through building it I learned:
-
-
-Working with server and client components in the Next.js App Router
-Managing complex, multi-step form state
-Implementing conflict detection for appointment scheduling
-Deploying a full-stack app (Vercel + MongoDB Atlas) and troubleshooting issues like localhost URLs in server components and prerendering failures
-
-
-📄 License
-
-This project was built for educational purposes as part of a portfolio.
+Milos Lazendic — github.com/itsmilos
