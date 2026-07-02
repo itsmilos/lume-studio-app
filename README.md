@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Lumé Studio
 
-## Getting Started
+A full-stack beauty salon booking application built as a portfolio project. Clients can book appointments through a multi-step form, while admins have a dedicated dashboard to manage bookings.
 
-First, run the development server:
+Show Image
+Show Image
+Show Image
+Show Image
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[lume-studio.vercel.app <!-- replace with actual link -->](https://lume-studio-ashen.vercel.app/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+Multi-step booking form – book appointments through several steps, with form state persisted between steps
+Conflict detection – prevents double-booking by checking for overlapping appointment times
+Admin dashboard – view and manage all bookings, with the ability to cycle through booking statuses
+Authentication – login and protected admin routes powered by NextAuth
+Animations – smooth stagger animations on content load (Framer Motion)
+Responsive design – adapted for all screen sizes
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🛠️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+Frontend: Next.js, React, Tailwind CSS, Framer Motion
+Backend: Next.js API routes
+Database: MongoDB (Mongoose ODM), hosted on MongoDB Atlas
+Authentication: NextAuth.js
+Deployment: Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🎨 Design
+
+The visual identity follows an elegant black/white/gold (#DE9E36) color palette, paired with the Playfair Display font for a luxurious, salon-like feel.
+
+🚀 Running Locally
+
+
+Clone the repository
+
+
+bashgit clone https://github.com/your-username/lume-studio.git
+cd lume-studio
+
+
+Install dependencies
+
+
+bashnpm install
+
+
+Create a .env.local file and add the required environment variables
+
+
+envMONGODB_URI=
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+
+
+Run the development server
+
+
+bashnpm run dev
+
+The app will be available at http://localhost:3000
+
+
+📚 What I Learned
+
+This was my first serious full-stack project, and through building it I learned:
+
+
+Working with server and client components in the Next.js App Router
+Managing complex, multi-step form state
+Implementing conflict detection for appointment scheduling
+Deploying a full-stack app (Vercel + MongoDB Atlas) and troubleshooting issues like localhost URLs in server components and prerendering failures
+
+
+📄 License
+
+This project was built for educational purposes as part of a portfolio.
