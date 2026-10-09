@@ -3,16 +3,25 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = "force-dynamic";
 
+
 export async function GET(req: NextRequest) {
-    await connectionDB();
+    try {
+        await connectionDB();
 
-    const Booking = (await import('@/lib/models/Booking')).default;
+        const Booking = (await import('@/lib/models/Booking')).default;
 
-    const data = await Booking.find().populate('service');
+        const data = await Booking.find().populate('service');
 
-    return NextResponse.json(data);
+        return NextResponse.json(data);
+    } catch (error) {
+        console.error('GET /api/bookings failed:', error);
+
+        return NextResponse.json(
+            { message: 'Failed to load bookings' },
+            { status: 500 }
+        );
+    }
 }
-
 export async function POST(request: Request) {
     try {
         const data = await request.json();
